@@ -1,0 +1,17 @@
+ul {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 50vh;
+  overflow: auto;
+}
+a{
+  text-decoration: none;
+  color:#c2a6e4
+}
+a:hover,a:active{
+  color:#8c5dc6
+}

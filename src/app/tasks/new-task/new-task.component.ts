@@ -11,11 +11,12 @@ import {
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  submitted = false;
   userId = input.required<string>();
   enteredTitle = signal('');
   enteredSummary = signal('');
@@ -35,12 +36,16 @@ export class NewTaskComponent {
     this.router.navigate(['/users', this.userId(), 'tasks'], {
       replaceUrl: true,
     });
+    this.submitted = true;
   }
 }
 
 export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (
   component
 ) => {
+  if (component.submitted) {
+    return true;
+  }
   if (
     component.enteredTitle() ||
     component.enteredSummary() ||
